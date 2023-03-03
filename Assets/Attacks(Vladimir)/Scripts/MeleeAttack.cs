@@ -14,7 +14,6 @@ public class MeleeAttack : MonoBehaviour
     [SerializeField] private Transform attackPos;
     [SerializeField] private float attackRangeX = 2f;
     [SerializeField] private float attackRangeY = 2f;
-
     private float startAttack;
     
     
@@ -29,13 +28,11 @@ public class MeleeAttack : MonoBehaviour
     {
         if (Time.time > AttackTime + attackCooldown)
         {
-            Debug.Log("attack");
             var hitEnemys = Physics2D.OverlapBoxAll(attackPos.position,
                 new Vector2(attackRangeX, attackRangeY), 0, Enemys);
             foreach (var VARIABLE in hitEnemys)
             {
                 VARIABLE.GetComponent<Enemy>().TakeDamage(playerDamage);
-                Debug.Log("damage");
             }
             AttackTime = Time.time;
         }
